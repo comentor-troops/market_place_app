@@ -5,6 +5,7 @@ import 'responsive_layout_controller.dart';
 class ResponsiveLayoutBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ResponsiveLayoutController>(() => ResponsiveLayoutController());
+    Get.put<ResponsiveLayoutController>(ResponsiveLayoutController(),
+        permanent: true);
   }
 }

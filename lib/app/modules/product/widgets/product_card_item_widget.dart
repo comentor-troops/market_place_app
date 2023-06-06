@@ -23,7 +23,7 @@ class ProductCardItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed("${AppRoutes.productDetails}/$productId"),
+      onTap: () => Get.toNamed("${AppRoutes.details}/$productId"),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(
