@@ -36,7 +36,6 @@ class AuthenticationSignUpAccountView extends StatelessWidget {
                       ),
                       const SizedBox(height: 52),
                       // ? Fullname
-                      TextFormField(),
                       const AuthenticationTextFormFieldWidget(
                         label: 'Fullname',
                         hintText: 'Enter your fullname',
