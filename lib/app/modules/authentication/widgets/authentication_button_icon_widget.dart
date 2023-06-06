@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/my_text_theme.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationButtonIconWidget extends StatelessWidget {
@@ -16,9 +17,12 @@ class AuthenticationButtonIconWidget extends StatelessWidget {
     return ElevatedButton.icon(
       onPressed: () {},
       icon: icon,
-      label: Text(label,
-          style:
-              TextStyle(color: Colors.grey[900], fontStyle: FontStyle.italic)),
+      label: Text(
+        label,
+        style: MyTextTheme.defaultStyle(
+          color: Colors.grey[900],
+        ),
+      ),
       style: ElevatedButton.styleFrom(
         shape: const RoundedRectangleBorder(side: BorderSide()),
         backgroundColor: Colors.white,

@@ -1,8 +1,9 @@
-import 'package:comentor_marketplace_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../../../routes/app_routes.dart';
+import '../../../theme/my_text_theme.dart';
 
 class ProductCardItemWidget extends StatelessWidget {
   const ProductCardItemWidget({
@@ -60,12 +61,9 @@ class ProductCardItemWidget extends StatelessWidget {
                             fit: FlexFit.tight,
                             child: Text(
                               productTitle,
-                              style: GoogleFonts.urbanist(
+                              style: MyTextTheme.defaultStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                textStyle: const TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                ),
                               ),
                             ),
                           ),
@@ -91,13 +89,11 @@ class ProductCardItemWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          ' $productPriceFormat',
-                          style: GoogleFonts.urbanist(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        Text(' $productPriceFormat',
+                            style: MyTextTheme.defaultStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            )),
                         Row(
                           children: [
                             RatingBar.builder(
@@ -120,8 +116,8 @@ class ProductCardItemWidget extends StatelessWidget {
                             const SizedBox(width: 6),
                             Text(
                               '(0)',
-                              style: GoogleFonts.urbanist(
-                                fontSize: 14,
+                              style: MyTextTheme.defaultStyle(
+                                fontSize: 12,
                                 fontWeight: FontWeight.w200,
                               ),
                             ),
@@ -129,7 +125,7 @@ class ProductCardItemWidget extends StatelessWidget {
                         ),
                         Text(
                           ' 0 sales',
-                          style: GoogleFonts.urbanist(
+                          style: MyTextTheme.defaultStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w200,
                           ),
@@ -172,11 +168,8 @@ class ProductCardItemWidget extends StatelessWidget {
                             ),
                             child: Text(
                               'Live  preview',
-                              style: GoogleFonts.urbanist(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                textStyle: const TextStyle(
-                                    overflow: TextOverflow.ellipsis),
+                              style: MyTextTheme.defaultStyle(
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),

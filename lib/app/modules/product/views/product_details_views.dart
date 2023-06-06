@@ -1,10 +1,10 @@
-import 'package:comentor_marketplace_app/app/modules/authentication/authentication_page.dart';
-import 'package:comentor_marketplace_app/app/modules/responsive/responsive_layout_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../theme/my_text_theme.dart';
+import '../../authentication/authentication_page.dart';
 import '../../responsive/responsive_layout.dart';
+import '../../responsive/responsive_layout_controller.dart';
 import '../../responsive/widgets/responsive_footer_widget.dart';
 import '../../responsive/widgets/responsive_header_widget.dart';
 import '../controllers/product_controller.dart';
@@ -75,12 +75,9 @@ class ProductDetailsViews extends GetView<ProductController> {
                                         Text(
                                           controller
                                               .detailsProduct!.productTitle!,
-                                          style: GoogleFonts.urbanist(
+                                          style: MyTextTheme.defaultStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
-                                            textStyle: const TextStyle(
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
                                           ),
                                         ),
                                         const SizedBox(height: 12),
@@ -88,12 +85,8 @@ class ProductDetailsViews extends GetView<ProductController> {
                                           child: Text(
                                             controller.detailsProduct!
                                                 .productDescription!,
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              textStyle: const TextStyle(
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
+                                            style: MyTextTheme.defaultStyle(
+                                              fontWeight: 16,
                                             ),
                                           ),
                                         ),
@@ -119,12 +112,8 @@ class ProductDetailsViews extends GetView<ProductController> {
                                   Flexible(
                                     child: Text(
                                       controller.detailsProduct!.productAuthor!,
-                                      style: GoogleFonts.urbanist(
+                                      style: MyTextTheme.defaultStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        textStyle: const TextStyle(
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
                                       ),
                                     ),
                                   ),

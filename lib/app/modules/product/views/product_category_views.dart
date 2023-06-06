@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../../../theme/my_text_theme.dart';
 import '../../responsive/responsive_layout.dart';
 import '../../responsive/responsive_layout_controller.dart';
 import '../controllers/product_controller.dart';
@@ -70,7 +70,7 @@ class ProductCategoryViews extends GetView<ProductController> {
                                     const SizedBox(width: 8),
                                     Text(
                                       "All Category",
-                                      style: GoogleFonts.urbanist(
+                                      style: MyTextTheme.defaultStyle(
                                         fontWeight: FontWeight.w600,
                                         color: category == 0
                                             ? Colors.purple
@@ -92,7 +92,7 @@ class ProductCategoryViews extends GetView<ProductController> {
                                         ),
                                         child: Text(
                                           controller.product!.length.toString(),
-                                          style: GoogleFonts.urbanist(
+                                          style: MyTextTheme.defaultStyle(
                                             fontSize: 12,
                                             color: Colors.white,
                                           ),
@@ -135,7 +135,7 @@ class ProductCategoryViews extends GetView<ProductController> {
                                     Text(
                                       controller.capitalize(controller
                                           .category![i - 1].categoryName!),
-                                      style: GoogleFonts.urbanist(
+                                      style: MyTextTheme.defaultStyle(
                                         fontWeight: FontWeight.w600,
                                         color: category == i
                                             ? Colors.purple
@@ -157,7 +157,7 @@ class ProductCategoryViews extends GetView<ProductController> {
                                         ),
                                         child: Text(
                                           '0',
-                                          style: GoogleFonts.urbanist(
+                                          style: MyTextTheme.defaultStyle(
                                             fontSize: 12,
                                             color: Colors.white,
                                           ),

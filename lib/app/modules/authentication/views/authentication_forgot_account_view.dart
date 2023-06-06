@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../theme/my_text_theme.dart';
 import '../controllers/authentication_controller.dart';
 import '../widgets/authentication_choice_text_widget.dart';
 import '../widgets/authentication_textformfield_widget.dart';
@@ -22,12 +23,12 @@ class AuthenticationForgotAccountView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         // ? TITLE
                         'Forgot Password!!',
                         textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          fontSize: 32,
+                        style: MyTextTheme.defaultStyle(
+                          fontSize: 24,
                         ),
                       ),
                       const SizedBox(height: 16),

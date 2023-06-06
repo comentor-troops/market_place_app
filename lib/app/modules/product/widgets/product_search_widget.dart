@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../../../theme/my_text_theme.dart';
 
 class ProductSearchWidget extends StatelessWidget {
   const ProductSearchWidget({
@@ -21,7 +22,7 @@ class ProductSearchWidget extends StatelessWidget {
         filled: true,
         fillColor: Colors.grey[200],
         hintText: 'Search with name of category',
-        hintStyle: GoogleFonts.urbanist(),
+        hintStyle: MyTextTheme.defaultStyle(),
         constraints: constraints,
         prefixIconConstraints: const BoxConstraints(
           minWidth: 60,

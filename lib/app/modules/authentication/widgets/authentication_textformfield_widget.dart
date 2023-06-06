@@ -7,7 +7,6 @@ class AuthenticationTextFormFieldWidget extends StatelessWidget {
     super.key,
     this.label = '',
     this.hintText = '',
-    this.labelStyle,
     this.validator,
     this.obscureText = false,
     this.controller,
@@ -16,7 +15,6 @@ class AuthenticationTextFormFieldWidget extends StatelessWidget {
   final bool obscureText;
   final String label;
   final String? hintText;
-  final TextStyle? labelStyle;
 
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -27,7 +25,10 @@ class AuthenticationTextFormFieldWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: labelStyle),
+        Text(
+          label,
+          style: MyTextTheme.defaultStyle(),
+        ),
         const SizedBox(height: 8),
         TextFormField(
           validator: validator,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../../../theme/my_text_theme.dart';
 import '../../responsive/responsive_layout_controller.dart';
 import '../controllers/product_controller.dart';
 
@@ -34,7 +34,7 @@ class ProductHeaderWidget extends GetView<ProductController> {
 
           return Text(
             controller.capitalize(pageTitle),
-            style: GoogleFonts.urbanist(
+            style: MyTextTheme.defaultStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
