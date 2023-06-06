@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/modules/responsive/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,9 @@ class AuthenticationSignInAccountView extends StatelessWidget {
             child: ListView(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 64, top: 32, right: 64),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.only(left: 24, right: 24)
+                      : const EdgeInsets.only(left: 64, top: 32, right: 64),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -52,7 +55,9 @@ class AuthenticationSignInAccountView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 52),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.symmetric(horizontal: 14)
+                      : const EdgeInsets.symmetric(horizontal: 52),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -77,15 +82,21 @@ class AuthenticationSignInAccountView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 64,
-                    vertical: 32,
-                  ),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.symmetric(
+                          horizontal: 26,
+                          vertical: 26,
+                        )
+                      : const EdgeInsets.symmetric(
+                          horizontal: 64,
+                          vertical: 32,
+                        ),
                   child: Column(
                     children: [
                       // ? Button Sign in
-
-                      const SizedBox(height: 52),
+                      ResponsiveLayout.isPhone(context)
+                          ? const SizedBox.shrink()
+                          : const SizedBox(height: 52),
                       const AuthenticationDividerTextWidget(
                           label: 'or sign in with'),
                       const SizedBox(height: 52),
@@ -139,7 +150,9 @@ class AuthenticationSignInAccountView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 64),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.symmetric(horizontal: 26)
+                      : const EdgeInsets.symmetric(horizontal: 64),
                   child: Text(
                     'Marketplace collects and uses personal data in accordance with our Privacy Policy. By creating an account, you agree to our Terms & Conditions.',
                     textAlign: TextAlign.left,

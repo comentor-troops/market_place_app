@@ -15,7 +15,6 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.initial,
       page: () => const ResponsiveLayoutPage(),
-      transition: Transition.noTransition,
       binding: ResponsiveLayoutBinding(),
       bindings: [
         AuthenticationBinding(),
@@ -31,7 +30,6 @@ abstract class AppPages {
     GetPage(
         name: "${AppRoutes.details}/:id",
         page: () => const ProductDetailsViews(),
-        transition: Transition.noTransition,
         binding: ProductBinding(),
         bindings: [
           AuthenticationBinding(),

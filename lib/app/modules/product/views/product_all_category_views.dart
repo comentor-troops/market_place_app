@@ -21,8 +21,8 @@ class AllCategoryViews extends GetView<ProductController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const ProductHeaderWidget(),
-        const SizedBox(height: 24),
+        isPhone ? const SizedBox.shrink() : const ProductHeaderWidget(),
+        isPhone ? const SizedBox.shrink() : const SizedBox(height: 24),
         ProductSearchWidget(
           constraints: const BoxConstraints(
             minHeight: 50,

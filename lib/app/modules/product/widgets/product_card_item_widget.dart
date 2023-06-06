@@ -25,7 +25,9 @@ class ProductCardItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var isPhone = ResponsiveLayout.isPhone(context);
     return InkWell(
-      onTap: () => Get.toNamed("${AppRoutes.details}/$productId"),
+      onTap: () {
+        Get.toNamed("${AppRoutes.details}/$productId");
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(

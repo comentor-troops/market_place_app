@@ -13,46 +13,54 @@ class AuthenticationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthenticationController>(
-      init: AuthenticationController(),
-      builder: (controller) {
-        return Container(
-          width: ResponsiveLayout.isComputer(context) ? 600 : 500,
-          color: Colors.white,
-          child: Form(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // ? Header
-                Container(
-                  height: 80,
-                  alignment: Alignment.center,
-                  color: Colors.grey[900],
-                  child: Text(
-                    'MARKETPLACE',
-                    style: MyTextTheme.defaultStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
+    return Material(
+      child: GetBuilder<AuthenticationController>(
+        init: AuthenticationController(),
+        builder: (controller) {
+          return Container(
+            width: ResponsiveLayout.isComputer(context) ? 600 : 500,
+            color: Colors.white,
+            child: Form(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // ? Header
+
+                  Container(
+                    height: ResponsiveLayout.isPhone(context) ? 100 : 80,
+                    alignment: ResponsiveLayout.isPhone(context)
+                        ? Alignment.bottomCenter
+                        : Alignment.center,
+                    padding: ResponsiveLayout.isPhone(context)
+                        ? const EdgeInsets.only(bottom: 16)
+                        : null,
+                    color: Colors.grey[900],
+                    child: Text(
+                      'MARKETPLACE',
+                      style: MyTextTheme.defaultStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                //? Change Authentication page
-                GetBuilder<AuthenticationController>(
-                  init: AuthenticationController(),
-                  builder: (controller) => Obx(
-                    () => (controller.tabAuthIndex.value == 0)
-                        ? const AuthenticationSignInAccountView()
-                        : (controller.tabAuthIndex.value == 1)
-                            ? const AuthenticationSignUpAccountView()
-                            : const AuthenticationForgotAccountView(),
-                  ),
-                )
-              ],
+                  //? Change Authentication page
+                  GetBuilder<AuthenticationController>(
+                    init: AuthenticationController(),
+                    builder: (controller) => Obx(
+                      () => (controller.tabAuthIndex.value == 0)
+                          ? const AuthenticationSignInAccountView()
+                          : (controller.tabAuthIndex.value == 1)
+                              ? const AuthenticationSignUpAccountView()
+                              : const AuthenticationForgotAccountView(),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

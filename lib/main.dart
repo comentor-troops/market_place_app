@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/modules/responsive/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/data/services/api_binding.dart';
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initial,
-      defaultTransition: Transition.fade,
+      defaultTransition: ResponsiveLayout.isPhone(context)
+          ? Transition.cupertino
+          : Transition.noTransition,
       initialBinding: ApiServiceBinding(),
       getPages: AppPages.pages,
     );

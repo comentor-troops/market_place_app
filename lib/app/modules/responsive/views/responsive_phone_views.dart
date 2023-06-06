@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../product/prodcut_page.dart';
+import '../../product/views/product_category_views.dart';
 import '../widgets/responsive_banner_widget.dart';
 import '../widgets/responsive_footer_widget.dart';
 
@@ -11,30 +12,22 @@ class ResponsivePhoneViews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const ResponsiveBannerWidget(),
-        const SizedBox(height: 26),
+        ResponsiveBannerWidget(),
+        SizedBox(height: 24),
+        ProductCategoryViews(),
+        SizedBox(height: 24),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(
-              flex: 1,
-              child: Container(
-                color: Colors.grey[200],
-              ),
-            ),
-            const ProductPage(),
-            Flexible(
-              flex: 1,
-              child: Container(
-                color: Colors.grey[200],
-              ),
-            ),
+            SizedBox(width: 24),
+            ProductPage(),
+            SizedBox(width: 24),
           ],
         ),
-        const SizedBox(height: 26),
-        const ResponsiveFooterWidget(),
+        SizedBox(height: 24),
+        ResponsiveFooterWidget(),
       ],
     );
   }

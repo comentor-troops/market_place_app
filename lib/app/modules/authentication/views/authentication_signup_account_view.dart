@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../theme/my_text_theme.dart';
+import '../../responsive/responsive_layout.dart';
 import '../controllers/authentication_controller.dart';
 import '../widgets/authentication_button_icon_widget.dart';
 import '../widgets/authentication_choice_text_widget.dart';
@@ -23,7 +24,9 @@ class AuthenticationSignUpAccountView extends StatelessWidget {
             child: ListView(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 64, top: 32, right: 64),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.only(left: 24, right: 24)
+                      : const EdgeInsets.only(left: 64, top: 32, right: 64),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -62,10 +65,14 @@ class AuthenticationSignUpAccountView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 64,
-                    vertical: 32,
-                  ),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.symmetric(
+                          horizontal: 26,
+                        )
+                      : const EdgeInsets.symmetric(
+                          horizontal: 64,
+                          vertical: 32,
+                        ),
                   child: Column(
                     children: [
                       // ? Button Sign Up
@@ -125,8 +132,10 @@ class AuthenticationSignUpAccountView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 64, vertical: 32),
+                  padding: ResponsiveLayout.isPhone(context)
+                      ? const EdgeInsets.symmetric(horizontal: 26, vertical: 32)
+                      : const EdgeInsets.symmetric(
+                          horizontal: 64, vertical: 32),
                   child: Text(
                     'Marketplace collects and uses personal data in accordance with our Privacy Policy. By creating an account, you agree to our Terms & Conditions.',
                     textAlign: TextAlign.left,

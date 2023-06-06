@@ -1,8 +1,8 @@
+import 'package:comentor_marketplace_app/app/modules/responsive/widgets/responsive_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../authentication/authentication_page.dart';
 import '../product/controllers/product_controller.dart';
 import '../product/views/product_category_views.dart';
 import 'views/responsive_computer_views.dart';
@@ -22,9 +22,10 @@ class ResponsiveLayoutPage extends GetView<ResponsiveLayoutController> {
     return Scaffold(
       key: controller.scaffoldKey,
       backgroundColor: Colors.grey[50],
-      appBar: const ResponsiveHeaderWidget(),
-      endDrawer: const AuthenticationPage(),
-      drawer: const ProductCategoryViews(),
+      appBar: ResponsiveHeaderWidget(context: context, useLeading: false),
+      drawer: ResponsiveLayout.isPhone(context)
+          ? const ResponsiveDraweWidget()
+          : const ProductCategoryViews(),
       body: Obx(
         () => product.isLoadingCategory.value || product.isLoadingProduct.value
             ? const Center(child: CupertinoActivityIndicator())
