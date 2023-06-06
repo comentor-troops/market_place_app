@@ -15,8 +15,9 @@ class ResponsiveHeaderWidget extends StatelessWidget
       : super(key: key);
 
   @override
-  Size get preferredSize =>
-      ResponsiveLayout.isPhone(context) || ResponsiveLayout.isTablet(context)
+  Size get preferredSize => ResponsiveLayout.isPhone(context)
+      ? const Size.fromHeight(40)
+      : ResponsiveLayout.isTablet(context)
           ? const Size.fromHeight(60)
           : const Size.fromHeight(80);
   final bool useLeading;
@@ -95,6 +96,7 @@ class _HeaderContent extends StatelessWidget {
                         size: 20.0,
                       ),
                     ),
+                    const SizedBox(width: 16)
                   ]
                 : [],
           );

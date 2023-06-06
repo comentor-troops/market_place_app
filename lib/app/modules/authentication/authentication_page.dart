@@ -32,17 +32,40 @@ class AuthenticationPage extends StatelessWidget {
                         ? Alignment.bottomCenter
                         : Alignment.center,
                     padding: ResponsiveLayout.isPhone(context)
-                        ? const EdgeInsets.only(bottom: 16)
+                        ? const EdgeInsets.only(bottom: 8)
                         : null,
-                    color: Colors.grey[900],
-                    child: Text(
-                      'MARKETPLACE',
-                      style: MyTextTheme.defaultStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ),
+                    color: Colors.black,
+                    child: ResponsiveLayout.isPhone(context)
+                        ? Row(
+                            children: [
+                              const SizedBox(width: 8),
+                              IconButton(
+                                splashRadius: 18,
+                                onPressed: () => Get.back(),
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 18.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'MARKETPLACE',
+                                style: MyTextTheme.defaultStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            'MARKETPLACE',
+                            style: MyTextTheme.defaultStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                   //? Change Authentication page
                   GetBuilder<AuthenticationController>(

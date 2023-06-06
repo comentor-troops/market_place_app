@@ -27,6 +27,13 @@ class ResponsiveDraweWidget extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: const Icon(Icons.shopping_cart),
+            title: const Text('Cart'),
+            onTap: () {
+              // Tambahkan fungsi yang dijalankan saat menu Home dipilih
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.forum_outlined),
             title: const Text('Forums'),
             onTap: () {
