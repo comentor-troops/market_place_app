@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/modules/responsive/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ class ProductCardItemWidget extends StatelessWidget {
   final Color contentColor;
   @override
   Widget build(BuildContext context) {
+    var isPhone = ResponsiveLayout.isPhone(context);
     return InkWell(
       onTap: () => Get.toNamed("${AppRoutes.details}/$productId"),
       child: ClipRRect(
@@ -45,10 +47,12 @@ class ProductCardItemWidget extends StatelessWidget {
                           Flexible(
                             fit: FlexFit.loose,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(18),
+                              borderRadius: isPhone
+                                  ? BorderRadius.circular(8)
+                                  : BorderRadius.circular(18),
                               child: SizedBox(
-                                height: 80,
-                                width: 80,
+                                height: isPhone ? 50 : 80,
+                                width: isPhone ? 50 : 80,
                                 child: Image.network(
                                   productLogo,
                                   alignment: Alignment.bottomLeft,
@@ -137,39 +141,49 @@ class ProductCardItemWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 14),
-                              backgroundColor: Colors.purple,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                                side: BorderSide.none,
+                          SizedBox(
+                            height: isPhone ? 40 : null,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                padding: isPhone
+                                    ? null
+                                    : const EdgeInsets.symmetric(vertical: 14),
+                                backgroundColor: Colors.purple,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                  side: BorderSide.none,
+                                ),
                               ),
-                            ),
-                            child: const Icon(
-                              Icons.local_grocery_store,
-                              size: 24.0,
+                              child: const Icon(
+                                Icons.local_grocery_store,
+                                size: 24.0,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 8),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                                side: const BorderSide(color: Colors.purple),
+                          SizedBox(
+                            height: isPhone ? 40 : null,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                  side: const BorderSide(color: Colors.purple),
+                                ),
+                                padding: isPhone
+                                    ? null
+                                    : const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 18,
+                                      ),
+                                backgroundColor: Colors.white,
                               ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 18,
-                              ),
-                              backgroundColor: Colors.white,
-                            ),
-                            child: Text(
-                              'Live  preview',
-                              style: MyTextTheme.defaultStyle(
-                                fontWeight: FontWeight.w600,
+                              child: Text(
+                                'Live  preview',
+                                style: MyTextTheme.defaultStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../authentication/authentication_page.dart';
 import '../responsive_layout.dart';
 import '../../../theme/my_text_theme.dart';
 import '../responsive_layout_controller.dart';
@@ -94,7 +95,14 @@ class _HeaderContent extends StatelessWidget {
                       ),
                       const SizedBox(width: 16),
                       ElevatedButton.icon(
-                        onPressed: () => controller.toggleEndDrawerPage(),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => const Dialog(
+                              child: AuthenticationPage(),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           padding: const EdgeInsets.symmetric(
