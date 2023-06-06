@@ -17,8 +17,8 @@ class ProductWorker {
     }
   }
 
-  Future<dynamic> prosesGetProduct() async =>
-      await apiService.fetchGetProduct().then(
+  Future<dynamic> prosesGetProduct(currentPage) async =>
+      await apiService.fetchGetProduct(currentPage).then(
         (value) async {
           log('>> Begin  prosesGetProduct');
           if (value.statusCode == 200 || value.statusCode == 201) {

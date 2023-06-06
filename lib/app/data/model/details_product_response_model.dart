@@ -34,7 +34,7 @@ class DetailsData {
   String? productLogo;
   String? productLinkPlaystore;
   String? productLinkAppstore;
-  Null productLinkOther;
+  String? productLinkOther;
   String? productPriceFormat;
   String? productDiscountFormat;
   List<DetailsProductScreenshot>? productScreenshot;

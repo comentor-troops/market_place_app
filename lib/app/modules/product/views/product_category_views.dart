@@ -102,10 +102,7 @@ class ProductCategoryViews extends GetView<ProductController> {
                                         backgroundColor: Colors.purple,
                                         radius: 10,
                                         child: Text(
-                                          (index == 0)
-                                              ? controller.product!.length
-                                                  .toString()
-                                              : '0',
+                                          (index == 0) ? '1' : '0',
                                           style: MyTextTheme.defaultStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -192,8 +189,7 @@ class ProductCategoryViews extends GetView<ProductController> {
                                                   BorderRadius.circular(6),
                                             ),
                                             child: Text(
-                                              controller.product!.length
-                                                  .toString(),
+                                              '1',
                                               style: MyTextTheme.defaultStyle(
                                                 fontSize: 12,
                                                 color: Colors.white,

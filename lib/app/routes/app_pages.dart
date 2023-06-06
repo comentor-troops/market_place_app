@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/modules/product/views/product_cart_views.dart';
 import 'package:get/get.dart';
 
 import '../modules/authentication/authentication_page.dart';
@@ -28,13 +29,19 @@ abstract class AppPages {
       binding: ProductBinding(),
     ),
     GetPage(
-        name: "${AppRoutes.details}/:id",
-        page: () => const ProductDetailsViews(),
-        binding: ProductBinding(),
-        bindings: [
-          AuthenticationBinding(),
-          ResponsiveLayoutBinding(),
-        ]),
+      name: "${AppRoutes.details}/:id",
+      page: () => const ProductDetailsViews(),
+      binding: ProductBinding(),
+      bindings: [
+        AuthenticationBinding(),
+        ResponsiveLayoutBinding(),
+      ],
+    ),
+    GetPage(
+      name: AppRoutes.cart,
+      page: () => const ProductCartViews(),
+      binding: ProductBinding(),
+    ),
     GetPage(
       name: AppRoutes.authentication,
       page: () => const AuthenticationPage(),

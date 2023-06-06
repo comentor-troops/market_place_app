@@ -11,9 +11,9 @@ class ApiService extends GetConnect {
     return http.get(Uri.parse('${url}api/v1/category'));
   }
 
-  Future<http.Response> fetchGetProduct() {
+  Future<http.Response> fetchGetProduct(currentPage) {
     log('>> Succsess fetchGetProduct <<');
-    return http.get(Uri.parse('${url}api/v1/product'));
+    return http.get(Uri.parse('${url}public/api/v1/product?page=$currentPage'));
   }
 
   Future<http.Response> fetchGetSearch(query) {

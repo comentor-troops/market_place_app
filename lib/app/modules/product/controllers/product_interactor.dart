@@ -18,11 +18,11 @@ class ProductInteractor {
     return categoryResponseModel ?? [];
   }
 
-  Future<List<Data>?> handleGetProduct() async {
+  Future<Paginate?> handleGetProduct(currentPage) async {
     log('>> Begin  handleGetProduct <<');
-    var product = await worker.prosesGetProduct();
+    var product = await worker.prosesGetProduct(currentPage);
     var productResponseModel =
-        ProductResponseModel.fromJson(json.decode(product)).data;
+        ProductResponseModel.fromJson(json.decode(product)).paginate;
     log('>> Success  handleGetProduct <<');
     return productResponseModel;
   }
@@ -31,7 +31,7 @@ class ProductInteractor {
     log('>> Begin  handleGetSearch <<');
     var search = await worker.prosesGetSearch(query);
     var searchResponseModel =
-        ProductResponseModel.fromJson(json.decode(search)).data;
+        ProductResponseModel.fromJson(json.decode(search)).paginate!.data;
     log('>> Success  handleGetSearch <<');
     return searchResponseModel;
   }

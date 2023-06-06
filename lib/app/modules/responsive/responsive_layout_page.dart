@@ -27,7 +27,7 @@ class ResponsiveLayoutPage extends GetView<ResponsiveLayoutController> {
           ? const ResponsiveDraweWidget()
           : const ProductCategoryViews(),
       body: Obx(
-        () => product.isLoadingCategory.value || product.isLoadingProduct.value
+        () => product.isLoadingCategory.value
             ? const Center(child: CupertinoActivityIndicator())
             : const SingleChildScrollView(
                 child: ResponsiveLayout(

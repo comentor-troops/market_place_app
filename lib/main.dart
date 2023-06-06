@@ -17,6 +17,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initial,
+      theme: ThemeData(
+        tooltipTheme: TooltipThemeData(
+          decoration: BoxDecoration(
+            color: Colors.black26,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+      ),
       defaultTransition: ResponsiveLayout.isPhone(context)
           ? Transition.cupertino
           : Transition.noTransition,

@@ -25,7 +25,6 @@ class ProductController extends GetxController {
     super.onClose();
   }
 
-  var isLoadingProduct = false.obs;
   var isLoadingCategory = false.obs;
   var isLoadingSearch = false.obs;
   List<DataCategory>? category;
@@ -79,14 +78,25 @@ class ProductController extends GetxController {
     }
   }
 
-  List<Data>? product;
+  var currentPage = 1.obs;
+  var totalPages = 0.obs;
+  var nextPageUrl = ''.obs;
+  var prevPageUrl = ''.obs;
+  var isLoadingProduct = false.obs;
+  Paginate? paginate;
+  List<Data>? products;
   List<ProductScreenshot>? productScreenshot;
   getProduct() async {
     log('>> Begin  getProduct <<');
     isLoadingProduct(true);
     try {
-      product = await interactor.handleGetProduct();
-      productScreenshot = product!
+      paginate = await interactor.handleGetProduct(currentPage.value);
+      currentPage.value = paginate?.currentPage ?? 1;
+      totalPages.value = paginate!.lastPage!.toInt();
+      nextPageUrl.value = paginate?.nextPageUrl ?? '';
+      prevPageUrl.value = paginate?.prevPageUrl ?? '';
+      products = paginate?.data ?? [];
+      productScreenshot = products!
           .map((product) => product.productScreenshot ?? [])
           .expand((productScreenshot) => productScreenshot)
           .toList();
@@ -95,6 +105,29 @@ class ProductController extends GetxController {
     } finally {
       log('>> Seccess  getProduct <<');
       isLoadingProduct(false);
+    }
+  }
+
+  goToNextPage() {
+    if (nextPageUrl.value.isNotEmpty) {
+      currentPage.value++;
+      getProduct();
+      update();
+    }
+  }
+
+  goToPreviousPage() {
+    if (prevPageUrl.value.isNotEmpty) {
+      currentPage.value--;
+      getProduct();
+      update();
+    }
+  }
+
+  goToPage(int page) {
+    if (page >= 1 && page <= totalPages.value) {
+      currentPage.value = page;
+      getProduct();
     }
   }
 
