@@ -29,11 +29,14 @@ abstract class AppPages {
       binding: ProductBinding(),
     ),
     GetPage(
-      name: "${AppRoutes.productDetails}/:id",
-      page: () => const ProductDetailsViews(),
-      transition: Transition.noTransition,
-      binding: ProductBinding(),
-    ),
+        name: "${AppRoutes.productDetails}/:id",
+        page: () => const ProductDetailsViews(),
+        transition: Transition.noTransition,
+        binding: ProductBinding(),
+        bindings: [
+          AuthenticationBinding(),
+          ResponsiveLayoutBinding(),
+        ]),
     GetPage(
       name: AppRoutes.authentication,
       page: () => const AuthenticationPage(),

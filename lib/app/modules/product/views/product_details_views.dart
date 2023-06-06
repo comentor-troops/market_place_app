@@ -1,3 +1,5 @@
+import 'package:comentor_marketplace_app/app/modules/authentication/authentication_page.dart';
+import 'package:comentor_marketplace_app/app/modules/responsive/responsive_layout_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class ProductDetailsViews extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     controller.getDetailsProduct(Get.parameters["id"]);
+    final responsiveController = Get.find<ResponsiveLayoutController>();
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -22,7 +25,9 @@ class ProductDetailsViews extends GetView<ProductController> {
                   child: CupertinoActivityIndicator(),
                 )
               : Scaffold(
+                  key: responsiveController.scaffoldKey,
                   appBar: const ResponsiveHeaderWidget(),
+                  endDrawer: const AuthenticationPage(),
                   body: SafeArea(
                     child: CustomScrollView(
                       slivers: [

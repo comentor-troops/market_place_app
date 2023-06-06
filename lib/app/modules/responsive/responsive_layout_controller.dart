@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class ResponsiveLayoutController extends GetxController {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   void toggleEndDrawerPage() {
     if (scaffoldKey.currentState?.isEndDrawerOpen ?? false) {
       scaffoldKey.currentState?.closeEndDrawer();
