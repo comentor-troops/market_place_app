@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -175,7 +176,7 @@ class _HeaderContent extends StatelessWidget {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor: MyColors.primary,
                           padding: const EdgeInsets.symmetric(
                             vertical: 14,
                             horizontal: 12,

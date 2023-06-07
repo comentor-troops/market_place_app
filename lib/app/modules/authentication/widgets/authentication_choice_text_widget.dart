@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/components_textbutton_widget.dart';
@@ -30,7 +31,7 @@ class AuthenticationChoiceTextWidget extends StatelessWidget {
           overlayColor: Colors.transparent,
           child: Text(
             textButton,
-            style: MyTextTheme.defaultStyle(color: Colors.blue),
+            style: MyTextTheme.defaultStyle(color: MyColors.primary),
           ),
         ),
       ],

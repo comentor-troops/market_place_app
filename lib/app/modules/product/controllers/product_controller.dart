@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../data/model/category_response_model.dart';
 import '../../../data/model/details_product_response_model.dart';
 import '../../../data/model/product_response_model.dart';
+import '../../../data/model/search_response_model.dart';
 import 'product_interactor.dart';
 
 class ProductController extends GetxController {
@@ -13,7 +15,14 @@ class ProductController extends GetxController {
 
   @override
   void onInit() {
-    searchController = TextEditingController();
+    searchController.value = TextEditingController();
+    searchController.value.addListener(() {
+      final searchText = searchController.value.text;
+      if (searchText.isEmpty) {
+        getProduct();
+      }
+    });
+
     super.onInit();
     getCategory();
     getProduct();
@@ -21,12 +30,12 @@ class ProductController extends GetxController {
 
   @override
   void onClose() {
-    searchController.dispose();
+    searchController.value.dispose();
     super.onClose();
   }
 
   var isLoadingCategory = false.obs;
-  var isLoadingSearch = false.obs;
+
   List<DataCategory>? category;
   List<SubCategoryFromCategory>? subCategoryFromCategory;
   var selectedCategory = DataCategory().obs;
@@ -80,54 +89,64 @@ class ProductController extends GetxController {
 
   var currentPage = 1.obs;
   var totalPages = 0.obs;
+  var lastPage = 0.obs;
   var nextPageUrl = ''.obs;
   var prevPageUrl = ''.obs;
+  var perPage = 0.obs;
   var isLoadingProduct = false.obs;
   Paginate? paginate;
   List<Data>? products;
-  List<ProductScreenshot>? productScreenshot;
   getProduct() async {
-    log('>> Begin  getProduct <<');
-    isLoadingProduct(true);
+    log('>> Begin getProduct <<');
+    isLoadingProduct.value = true;
+    products?.clear();
     try {
+      await Future.delayed(const Duration(milliseconds: 200));
+
       paginate = await interactor.handleGetProduct(currentPage.value);
-      currentPage.value = paginate?.currentPage ?? 1;
-      totalPages.value = paginate!.lastPage!.toInt();
-      nextPageUrl.value = paginate?.nextPageUrl ?? '';
-      prevPageUrl.value = paginate?.prevPageUrl ?? '';
-      products = paginate?.data ?? [];
-      productScreenshot = products!
-          .map((product) => product.productScreenshot ?? [])
-          .expand((productScreenshot) => productScreenshot)
-          .toList();
+
+      if (paginate != null) {
+        perPage.value = paginate!.perPage ?? 0;
+        currentPage.value = paginate!.currentPage ?? 1;
+        totalPages.value = paginate!.total ?? 0;
+        lastPage.value = paginate!.lastPage ?? paginate!.currentPage ?? 1;
+        nextPageUrl.value = paginate!.nextPageUrl ?? '';
+        prevPageUrl.value = paginate!.prevPageUrl ?? '';
+
+        if (paginate!.data != null) {
+          products = RxList<Data>(paginate!.data!);
+        }
+        update();
+      }
     } catch (e) {
       debugPrint('Error getProduct: $e');
     } finally {
-      log('>> Seccess  getProduct <<');
-      isLoadingProduct(false);
+      log('>> Success getProduct <<');
+      isLoadingProduct.value = false;
     }
   }
 
-  goToNextPage() {
+  goToNextPage() async {
     if (nextPageUrl.value.isNotEmpty) {
       currentPage.value++;
-      getProduct();
+      await getProduct();
       update();
     }
   }
 
-  goToPreviousPage() {
+  goToPreviousPage() async {
     if (prevPageUrl.value.isNotEmpty) {
       currentPage.value--;
-      getProduct();
+      await getProduct();
       update();
     }
   }
 
-  goToPage(int page) {
+  goToPage(int page) async {
     if (page >= 1 && page <= totalPages.value) {
       currentPage.value = page;
-      getProduct();
+      await getProduct();
+      update();
     }
   }
 
@@ -151,33 +170,42 @@ class ProductController extends GetxController {
     }
   }
 
-  late TextEditingController searchController;
+  late var searchController = TextEditingController().obs;
+  var isLoadingSearch = false.obs;
 
-  RxList<Data> search = RxList<Data>([]);
-  Future<void> getSearch(String query) async {
+  RxList<DataSearch> search = RxList<DataSearch>([]);
+
+  void getSearch(String query) async {
     log('>> Begin getSearch <<');
     isLoadingSearch.value = true;
-
     try {
       final keywords = query.split(' ');
-      final results = <Data>{};
+      var results = <DataSearch>[];
 
-      for (var keyword in keywords) {
-        final searchResults = await interactor.handleGetSearch(keyword);
-        searchResults?.forEach((result) {
-          if (!results.any((existingResult) =>
-              existingResult.productTitle == result.productTitle)) {
-            results.add(result);
+      if (query.isEmpty) {
+        search.clear();
+        isSearching.value = false;
+      } else {
+        for (var keyword in keywords) {
+          final searchResults = await interactor.handleGetSearch(keyword);
+
+          if (searchResults != null) {
+            results.addAll(searchResults);
           }
-        });
+        }
+        search.assignAll(results);
+        isSearching.value = results.isNotEmpty;
       }
 
-      search.assignAll(results.toList());
-    } catch (e) {
-      debugPrint('Error getSearch: $e');
-    } finally {
       log('>> Success getSearch <<');
       isLoadingSearch.value = false;
+    } catch (e) {
+      debugPrint('Error getSearch: $e');
     }
+  }
+
+  RxBool isSearching = false.obs;
+  void setIsSearching(bool value) {
+    isSearching.value = value;
   }
 }

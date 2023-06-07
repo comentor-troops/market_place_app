@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/services/api_service.dart';
@@ -30,18 +31,21 @@ class ProductWorker {
         },
       );
 
-  Future<dynamic> prosesGetSearch(query) async =>
-      await apiService.fetchGetSearch(query).then(
-        (value) async {
-          log('>> Begin  prosesGetSearch');
-          if (value.statusCode == 200 || value.statusCode == 201) {
-            log('>> Success  prosesGetSearch');
-            return value.body;
-          } else {
-            throw Exception('Failed to prosesGetSearch: ${value.statusCode}');
-          }
-        },
-      );
+  Future<dynamic> prosesGetSearch(query) async {
+    try {
+      log('>> Begin prosesGetSearch');
+      var response = await apiService.fetchGetSearch(query);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log('>> Success prosesGetSearch');
+        return response.body;
+      } else {
+        throw Exception('Failed to prosesGetSearch: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('Error prosesGetSearch: $e');
+      throw Exception('Failed to prosesGetSearch');
+    }
+  }
 
   Future<dynamic> prosesGetDetailsProduct(id) async =>
       await apiService.fetchGetDetailsProduct(id).then((value) async {

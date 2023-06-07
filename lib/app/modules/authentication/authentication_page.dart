@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +35,7 @@ class AuthenticationPage extends StatelessWidget {
                     padding: ResponsiveLayout.isPhone(context)
                         ? const EdgeInsets.only(bottom: 8)
                         : null,
-                    color: Colors.black,
+                    color: MyColors.primary,
                     child: ResponsiveLayout.isPhone(context)
                         ? Row(
                             children: [

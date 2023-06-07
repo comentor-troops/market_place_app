@@ -1,4 +1,5 @@
 import 'package:comentor_marketplace_app/app/modules/responsive/responsive_layout.dart';
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,7 +76,9 @@ class AuthenticationSignInAccountView extends StatelessWidget {
                         overlayColor: Colors.transparent,
                         child: Text(
                           'Forgot password ?',
-                          style: MyTextTheme.defaultStyle(color: null),
+                          style: MyTextTheme.defaultStyle(
+                            color: MyColors.primary,
+                          ),
                         ),
                       ),
                     ],

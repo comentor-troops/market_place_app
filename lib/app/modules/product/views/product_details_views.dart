@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,159 +18,174 @@ class ProductDetailsViews extends GetView<ProductController> {
 
     return LayoutBuilder(
       builder: ((context, constraints) {
-        return Obx(
-          () => controller.isLoadingDetailsProduct.value
-              ? Container(
-                  color: Colors.grey[50],
-                  child: const Center(
-                    child: CupertinoActivityIndicator(),
-                  ),
-                )
-              : Scaffold(
-                  appBar: ResponsiveHeaderWidget(
-                      context: context, useLeading: true),
-                  endDrawer: const AuthenticationPage(),
-                  body: SafeArea(
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverList(
-                          delegate: SliverChildListDelegate([
-                            Container(
-                              height: 260,
-                              width: double.infinity,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 80),
-                              color: Colors.grey[50],
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 120,
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(24),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.shade200,
-                                          spreadRadius: 2,
-                                          blurRadius: 2,
-                                          offset: const Offset(0, 3),
-                                        )
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(24),
-                                      child: Image.network(
-                                        controller.detailsProduct!.productLogo
-                                            .toString(),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 26),
-                                  Flexible(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          controller
-                                              .detailsProduct!.productTitle!,
-                                          style: MyTextTheme.defaultStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 12),
-                                        Flexible(
-                                          child: Text(
-                                            controller.detailsProduct!
-                                                .productDescription!,
-                                            style: MyTextTheme.defaultStyle(
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: 60,
-                              width: double.infinity,
-                              color: Colors.grey[100],
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 100),
-                              child: Row(
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 20.0,
-                                    backgroundColor: Colors.green,
-                                  ),
-                                  const SizedBox(width: 26),
-                                  Flexible(
-                                    child: Text(
-                                      controller.detailsProduct!.productAuthor!,
-                                      style: MyTextTheme.defaultStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
-                        ),
-                        SliverPadding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: ResponsiveLayout.isTablet(context) ||
-                                    ResponsiveLayout.isPhone(context)
-                                ? 50
-                                : 100,
-                            vertical: 26,
-                          ),
-                          sliver: SliverGrid(
-                            gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                              mainAxisExtent: 620,
-                              maxCrossAxisExtent: 310,
-                              crossAxisSpacing: 38,
-                              childAspectRatio: 1,
-                              mainAxisSpacing: 38,
-                            ),
-                            delegate: SliverChildBuilderDelegate(
-                              (context, i) {
-                                var screenshoot =
-                                    controller.detailsProductScreenshot![i];
+        var isPhone = ResponsiveLayout.isPhone(context);
+        var isTablet = ResponsiveLayout.isPhone(context);
 
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
+        return Obx(
+          () {
+            var details = controller.detailsProduct!;
+            var screenshoot = controller.detailsProductScreenshot!;
+            if (controller.isLoadingDetailsProduct.value) {
+              return Container(
+                color: Colors.grey[50],
+                child: const Center(
+                  child: CupertinoActivityIndicator(),
+                ),
+              );
+            } else {
+              return Scaffold(
+                appBar:
+                    ResponsiveHeaderWidget(context: context, useLeading: true),
+                endDrawer: const AuthenticationPage(),
+                body: SafeArea(
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildListDelegate([
+                          Container(
+                            height: 260,
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 80),
+                            color: Colors.grey[50],
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(24),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade200,
+                                        spreadRadius: 2,
+                                        blurRadius: 2,
+                                        offset: const Offset(0, 3),
+                                      )
+                                    ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(24),
                                     child: Image.network(
-                                      screenshoot.productScreenshot!,
-                                      alignment: Alignment.topCenter,
-                                      width: 320,
-                                      fit: BoxFit.contain,
+                                      details.productLogo.toString(),
                                     ),
                                   ),
-                                );
-                              },
-                              childCount:
-                                  controller.detailsProductScreenshot!.length,
+                                ),
+                                const SizedBox(width: 26),
+                                Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        details.productTitle!,
+                                        style: MyTextTheme.defaultStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Flexible(
+                                        child: Text(
+                                          details.productDescription!,
+                                          style: MyTextTheme.defaultStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                          Container(
+                            height: 60,
+                            width: double.infinity,
+                            color: Colors.grey[100],
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 100),
+                            child: Row(
+                              children: [
+                                const CircleAvatar(
+                                  radius: 20.0,
+                                  backgroundColor: Colors.green,
+                                ),
+                                const SizedBox(width: 26),
+                                Flexible(
+                                  child: Text(
+                                    details.productAuthor!,
+                                    style: MyTextTheme.defaultStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]),
+                      ),
+                      SliverPadding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isTablet || isPhone ? 50 : 100,
+                          vertical: 26,
                         ),
-                        const SliverToBoxAdapter(
-                          child: ResponsiveFooterWidget(),
+                        sliver: SliverGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                            mainAxisExtent: isTablet ? 600 : 570,
+                            maxCrossAxisExtent: isPhone ? 450 : 310,
+                            crossAxisSpacing: 38,
+                            childAspectRatio: 1,
+                            mainAxisSpacing: 38,
+                          ),
+                          delegate: SliverChildBuilderDelegate(
+                            childCount: screenshoot.length,
+                            (context, i) {
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      contentPadding: EdgeInsets.zero,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      content: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Image.network(
+                                          screenshoot[i].productScreenshot!,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    screenshoot[i].productScreenshot!,
+                                    alignment: Alignment.topCenter,
+                                    width: 320,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      const SliverToBoxAdapter(
+                        child: ResponsiveFooterWidget(),
+                      ),
+                    ],
                   ),
                 ),
+              );
+            }
+          },
         );
       }),
     );

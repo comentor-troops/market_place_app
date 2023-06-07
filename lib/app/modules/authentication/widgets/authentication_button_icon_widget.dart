@@ -24,7 +24,9 @@ class AuthenticationButtonIconWidget extends StatelessWidget {
         ),
       ),
       style: ElevatedButton.styleFrom(
-        shape: const RoundedRectangleBorder(side: BorderSide()),
+        shape: RoundedRectangleBorder(
+            side: const BorderSide(width: 0.5),
+            borderRadius: BorderRadius.circular(4)),
         backgroundColor: Colors.white,
         minimumSize: minimumSize,
       ),

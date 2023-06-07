@@ -1,4 +1,5 @@
 import 'package:comentor_marketplace_app/app/routes/app_routes.dart';
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -115,7 +116,7 @@ class ComponentsDialogCart extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       side: const BorderSide(
                         width: 0.5,
-                        color: Colors.purple,
+                        color: MyColors.primary,
                       ),
                     ),
                   ),
@@ -136,7 +137,7 @@ class ComponentsDialogCart extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    backgroundColor: Colors.purple,
+                    backgroundColor: MyColors.primary,
                   ),
                   child: Text(
                     "Checkout now",

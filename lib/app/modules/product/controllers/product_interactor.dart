@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../data/model/category_response_model.dart';
 import '../../../data/model/details_product_response_model.dart';
 import '../../../data/model/product_response_model.dart';
+import '../../../data/model/search_response_model.dart';
 import 'product_worker.dart';
 
 class ProductInteractor {
@@ -27,13 +28,20 @@ class ProductInteractor {
     return productResponseModel;
   }
 
-  Future<List<Data>?> handleGetSearch(query) async {
-    log('>> Begin  handleGetSearch <<');
-    var search = await worker.prosesGetSearch(query);
-    var searchResponseModel =
-        ProductResponseModel.fromJson(json.decode(search)).paginate!.data;
-    log('>> Success  handleGetSearch <<');
-    return searchResponseModel;
+  Future<List<DataSearch>?> handleGetSearch(String query) async {
+    log('>> Begin handleGetSearch <<');
+
+    try {
+      final search = await worker.prosesGetSearch(query);
+      final searchResponse = SearchResponseModel.fromJson(json.decode(search));
+      final searchResponseModel = searchResponse.data;
+
+      log('>> Success handleGetSearch <<');
+      return searchResponseModel;
+    } catch (e) {
+      log('>> Error handleGetSearch: $e <<');
+      return null;
+    }
   }
 
   Future<DetailsData?> handleGetDetailsProduct(id) async {

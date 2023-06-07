@@ -1,4 +1,5 @@
 import 'package:comentor_marketplace_app/app/modules/product/controllers/product_controller.dart';
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -157,7 +158,7 @@ class ProductCardItemWidget extends StatelessWidget {
                               padding: isPhone
                                   ? null
                                   : const EdgeInsets.symmetric(vertical: 14),
-                              backgroundColor: Colors.purple,
+                              backgroundColor: MyColors.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6),
                                 side: BorderSide.none,
@@ -177,7 +178,7 @@ class ProductCardItemWidget extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6),
-                                side: const BorderSide(color: Colors.purple),
+                                side: const BorderSide(color: MyColors.primary),
                               ),
                               padding: isPhone
                                   ? null

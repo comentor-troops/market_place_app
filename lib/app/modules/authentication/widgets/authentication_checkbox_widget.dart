@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/my_text_theme.dart';
@@ -18,7 +19,7 @@ class AuthenticationCheckboxWidget extends StatelessWidget {
         Checkbox(
             materialTapTargetSize: MaterialTapTargetSize.padded,
             splashRadius: 10,
-            activeColor: Colors.grey[900],
+            activeColor: MyColors.primary,
             checkColor: Colors.white,
             value: value,
             onChanged: onChanged),

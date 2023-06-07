@@ -1,3 +1,4 @@
+import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/my_text_theme.dart';
@@ -36,7 +37,7 @@ class ProductSearchWidget extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 2,
-            color: Colors.purple,
+            color: MyColors.primary,
           ),
           borderRadius: BorderRadius.circular(24),
         ),

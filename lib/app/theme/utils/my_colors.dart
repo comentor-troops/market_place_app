@@ -12,4 +12,6 @@ class MyColors {
       opacity,
     );
   }
+
+  static const primary = Color(0xFF006D6F);
 }
