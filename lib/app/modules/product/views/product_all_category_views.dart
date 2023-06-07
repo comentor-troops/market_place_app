@@ -44,7 +44,6 @@ class AllCategoryViews extends GetView<ProductController> {
                     : controller.getSearch(query),
               ),
             ),
-            const SizedBox(height: 26),
             Obx(
               () {
                 final isLoadingSearch = controller.isLoadingSearch.value;

@@ -103,7 +103,9 @@ class ProductCategoryViews extends GetView<ProductController> {
                                         backgroundColor: MyColors.primary,
                                         radius: 10,
                                         child: Text(
-                                          (index == 0) ? '1' : '0',
+                                          (index == 0)
+                                              ? '${controller.paginate!.perPage}'
+                                              : '0',
                                           style: MyTextTheme.defaultStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -161,12 +163,12 @@ class ProductCategoryViews extends GetView<ProductController> {
                                       children: [
                                         Icon(
                                           Icons.widgets_outlined,
-                                          size: 24,
+                                          size: 20,
                                           color: category == 0
                                               ? MyColors.primary
                                               : Colors.grey,
                                         ),
-                                        const SizedBox(width: 8),
+                                        const SizedBox(width: 16),
                                         Text(
                                           "All Category",
                                           style: MyTextTheme.defaultStyle(
@@ -229,12 +231,12 @@ class ProductCategoryViews extends GetView<ProductController> {
                                       children: [
                                         Icon(
                                           icon[i - 1],
-                                          size: 24,
+                                          size: 20,
                                           color: category == i
                                               ? MyColors.primary
                                               : Colors.grey,
                                         ),
-                                        const SizedBox(width: 8),
+                                        const SizedBox(width: 16),
                                         Text(
                                           controller.capitalize(controller
                                               .category![i - 1].categoryName!),

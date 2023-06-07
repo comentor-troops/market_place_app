@@ -45,6 +45,7 @@ class ProductController extends GetxController {
     log('>> Begin getCategory <<');
     isLoadingCategory(true);
     try {
+      await Future.delayed(const Duration(seconds: 2));
       category = await interactor.handleGetCategory();
       if (category != null) {
         category = category
@@ -101,8 +102,6 @@ class ProductController extends GetxController {
     isLoadingProduct.value = true;
     products?.clear();
     try {
-      await Future.delayed(const Duration(milliseconds: 200));
-
       paginate = await interactor.handleGetProduct(currentPage.value);
 
       if (paginate != null) {

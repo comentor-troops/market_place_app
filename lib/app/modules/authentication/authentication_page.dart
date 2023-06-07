@@ -1,8 +1,8 @@
-import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../theme/my_text_theme.dart';
+import '../../theme/utils/my_colors.dart';
 import '../responsive/responsive_layout.dart';
 import 'controllers/authentication_controller.dart';
 import 'views/authentication_forgot_account_view.dart';

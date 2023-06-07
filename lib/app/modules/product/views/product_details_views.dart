@@ -1,4 +1,3 @@
-import 'package:comentor_marketplace_app/app/theme/utils/my_colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +22,6 @@ class ProductDetailsViews extends GetView<ProductController> {
 
         return Obx(
           () {
-            var details = controller.detailsProduct!;
-            var screenshoot = controller.detailsProductScreenshot!;
             if (controller.isLoadingDetailsProduct.value) {
               return Container(
                 color: Colors.grey[50],
@@ -33,6 +30,8 @@ class ProductDetailsViews extends GetView<ProductController> {
                 ),
               );
             } else {
+              var details = controller.detailsProduct!;
+              var screenshoot = controller.detailsProductScreenshot!;
               return Scaffold(
                 appBar:
                     ResponsiveHeaderWidget(context: context, useLeading: true),
