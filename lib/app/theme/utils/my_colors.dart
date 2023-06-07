@@ -13,5 +13,5 @@ class MyColors {
     );
   }
 
-  static const primary = Color(0xFF006D6F);
+  static const primary = Color.fromARGB(255, 142, 140, 1);
 }
